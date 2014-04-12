@@ -1,0 +1,50 @@
+#\usr\sbin\python
+#Change line above to reflect your installed python location
+
+#Practice python script
+
+
+#I take the entry of the first three numbers off a resistor and return it's value.
+
+# This is a list for the tens digit of the code
+Tens=[0,10,20,30,40,50,60,70,80,90]
+
+# This is a list for the colors on the resistor
+Color=["Black","Brown","Red","Orange","Yellow","Green","Blue","Violet","Gray","White"]
+
+#This list is the multipliers for the resistor
+Mult=[1,10,100,1000,10000,100000,1000000,10000000,100000000,100000000,1000000000]
+
+#print the basic information
+
+print "Lets see what that resistor value is\
+\nFor starters here is what number each color represents:\
+\nBlack:0         Green:5\
+\nBrown:1         Blue:6\
+\nRed:2           Violet:7\
+\nOrange:3        Gray:8\
+\nYellow:4        White:9"
+print" "
+print "Hold the resistor with this orientation\
+\n--------------------\
+\n|    c  c  c        |\
+\n|    o  o  o        |\
+\n|    1  2  3        |\
+\n--------------------"
+
+co1 = int(raw_input("What number is represented by co1? ")) # Gets the first number and forced to be an integer
+
+co2 = int(raw_input("What number is represented by co2? ")) # Gets the second number and forced to be an integer
+
+co3 = int(raw_input("What number is represented by co3? ")) # Gets the multiplier and forced to be an integer
+
+value =int(co2+Tens[co1]) #Assembling the value of the first two digits
+multiplier=int(Mult[co3]) #Getting the multiplier
+
+print " "
+print "You input :"
+print Color[co1], co1 #print the color band and number
+print Color[co2], co2 #print the color band and number
+print Color[co3], co3 #print the color band and number
+print " "
+print "You have a ",value*multiplier," ohm resistor"
