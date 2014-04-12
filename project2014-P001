@@ -32,9 +32,9 @@ print "Hold the resistor with this orientation\
 \n|    1  2  3        |\
 \n--------------------"
 
-co1 = int(raw_input("What number is represented by co1? ")) # Gets the first number and forced to be an integer
+co1 = int(raw_input("What number is represented by co1? ")) # Gets the first digit and forced to be an integer
 
-co2 = int(raw_input("What number is represented by co2? ")) # Gets the second number and forced to be an integer
+co2 = int(raw_input("What number is represented by co2? ")) # Gets the second digit and forced to be an integer
 
 co3 = int(raw_input("What number is represented by co3? ")) # Gets the multiplier and forced to be an integer
 
