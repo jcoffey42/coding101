@@ -1,12 +1,10 @@
-#\usr\sbin\python
-#Change line above to reflect your installed python location
-
-#Practice python script
+#Created on a win8.1 system with IDLE
+#Practice python script 
 
 
 #I take the entry of the first three numbers off a resistor and return it's value.
 
-# This is a list for the tens digit of the code
+# This is a list for the tens digit of the resistor
 Tens=[0,10,20,30,40,50,60,70,80,90]
 
 # This is a list for the colors on the resistor
