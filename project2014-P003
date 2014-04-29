@@ -1,0 +1,83 @@
+#Created on a win8.1 system with IDLE
+#Practice python script 
+#A script to pull in an output file with a pipe delimited with a varied number
+#of items per Title record
+#list of unused title to creat a smaller list of title with the format
+# Call#  |  Publication Year | Title
+
+#Open file for read only access, change the filename to your neeeds
+record = open("c:\data\catalog2.txt", "r")
+
+#Open a file for output, write access, change the filename to your neeeds
+output = open("c:\data\export.txt","w")
+
+#setup the empty lists
+
+Title = [] #The Title of the item(s)
+
+T=0 #A counter for the end
+
+Item = [] #The item ID of the item(s)
+
+Callnumber = [] #The Call Number of the items(s)
+
+C=0 #A counter for hte Call numbers
+
+Pubyear = [] #The Publication Year of the Title
+
+Finished = [] #used to put together the data for export
+
+working = [] #The entire input from one file read, split by "|"
+
+#Setup loop to read through entire file for processing
+#I found "with" used as the preferred method to read files of indeterminate length
+#It will read the file as the object record, loading into line and then testing
+#for an empty string, the indication of the End OF File. It will break if EOF
+#or go on if line has a value, repeating the read until and EOF
+with (open("c:\data\catalog2.txt", "r")) as record:
+   for line in record:
+        if "str" in line:
+           break
+
+
+# split the record into a list called working by the pipe symbol
+        working = line.split("|")
+        print T #To indicate work is being done.
+# Find the location of ITEM tags, not used at this time
+        for x in range(0,len(working)):
+              if working[x] == "ITEM>":
+                  Item.append(x)  
+
+# Find the location of the Call number tags         
+        for x in range(0,len(working)):
+              if working[x] == "CALLNUM>":
+                 Callnumber.append(working[x+1])#Load the Call number
+                 C=C+1 # Totaling the call numbers
+# Find the location of the Title tag
+        for x in range(0,len(working)):
+              if working[x] == "Title":
+                  Title.append(working[x+1])#Load the Title
+                  Pubyear.append(working[x-2])#load the Publication year
+                  T= T+1 # Totaling the titles
+# pack the finished list for each Callnumber in the record, may be one or more        
+        for x in range(0,len(Callnumber)):
+              Finished.append(Pubyear)
+              Finished.append(Callnumber[x])
+              Finished.append(Title)
+
+      #prepare the final output string for wrting 
+              export = str("{}|{}|{}|\n").format(Finished[0],Finished[1],Finished[2])
+              output.write(export)# Write the one item to the files
+              Finished = []#Clear the list for the next item
+
+#Indicate count of processed records for quality control
+
+print T," Titles processed"
+print C," Call Numbers processed"
+
+#Close the files and end
+
+output.close()
+record.close()
+
+raw_input() # To keep the window open on gui systems
