@@ -6,10 +6,10 @@
 # list of unused title to create a smaller list of title with the format
 #  Publication Year | Call#  | Title
 
-# Open file for read only access, change the filename to your neeeds
+# Open file for read only access, change the filename to your needs
 record = open("c:\data\catalog2.txt", "r")
 
-# Open a file for output, write access, change the filename to your neeeds
+# Open a file for output, write access, change the filename to your needs
 output = open("c:\data\export.txt","w")
 
 # Setup the empty lists
