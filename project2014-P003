@@ -66,11 +66,13 @@ for Line in record:
       # Prepare the final output string for wrting 
               export = str("{}|{}|{}|\n").format(Finished[0],Finished[1],Finished[2])
               output.write(export)# Write the one item to the files
-              Finished = []# Clear the list for the next item
-              Title = []# Clear the Title list
-              Pubyear = []# Clear the Publication year list
-              Callnumber = []# Clear the Call Number list
-              print "Processed #",T # To indicate work is being done.
+              print "Processed title #",T, "Callnumber",x # To indicate work is being done
+         
+         Finished = []# Clear the list for the next item
+         Title = []# Clear the Title list
+         Pubyear = []# Clear the Publication year list
+         Callnumber = []# Clear the Call Number list
+             
 # Indicate count of processed records for quality control
 
 print T," Titles processed"
