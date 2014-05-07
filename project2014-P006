@@ -4,21 +4,23 @@
 
 #First we setup the functions
 
-def SimpleLoop():
+def SimpleLoop(): #define a function with the variable to pass on inside ()
         """
 A simple loop to demonstrate counting
-"""
+This comment should be the fuction description 
+""" 
+# I am printing the small program as for reference
         print "A simple loop to demonstrate counting"
         print """
-        x= 10
-        while x > 0:
-                print x
-                x=x-1
+        x= 10 # Set the value of x to 10
+        while x > 0: #this is the loop beginning. It will loop until x < 0
+                print x #Print x
+                x=x-1 #Decriment x by 1
                 """
-        x= 10
-        while x > 0:
-                print x
-                x=x-1
+        x= 10  # Set the value of x to 10
+        while x > 0: #this is the loop beginning. It will loop until x < 0
+                print x #Print x
+                x=x-1 #Decriment x by 1
                 
 def Factoring():
         """
