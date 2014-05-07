@@ -4,7 +4,22 @@
 
 #First we setup the functions
 
-
+def SimpleLoop():
+        """
+A simple loop to demonstrate counting
+"""
+        print "A simple loop to demonstrate counting"
+        print """
+        x= 10
+        while x > 0:
+                print x
+                x=x-1
+                """
+        x= 10
+        while x > 0:
+                print x
+                x=x-1
+                
 def Factoring():
         """
 Take in a number and return the factors as a list. If there is only one factor,"1", then the number is a prime number
@@ -48,6 +63,7 @@ while ans :
         print """
        what shall we do
        1- factoring
+       2- Simple Loop
        9- Quit
                 """
         roption = "4"
@@ -56,6 +72,9 @@ while ans :
                 option = int(roption) # make sure menu intery is number
                 if option == 1:       #test for one
                         Factoring()   #Call the defined function Factoring
+                elif option ==2:
+                        SimpleLoop()
+
                 elif option == 9:     #test for nine
                         ans = False
 
