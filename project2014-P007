@@ -1,0 +1,76 @@
+# Created on a win8.1 system with IDLE
+# project2014-P007.py
+# A program to creat a file of numbers that are the line and field for a
+# sustitution code. You provide a text file to use as the key. You will use the same text file to decrypt the message.
+# The original messge will never be written to a file.
+
+
+# first lets define some things
+
+KeyFileName = "c:\data\key.txt" #The name of the key file
+Message = "c:\data\secretmessage.txt" # the name message file
+Line = []
+
+
+def Encode(word):  # Start the function definitiion
+            Continue = True # Prime the while loop
+            LineCount = 0 # Prime linr counter
+            export = "" # used to build the code for one word
+            Working = [] # Holds the line of the key to scan 
+            
+            while Continue: # Start the loop
+               for line in record: # Get a line of the key file
+                    
+                    Working= line.split(" ") # Split it upinto a list
+                    LineCount = LineCount+1 # Increment LineCount
+                    for x in range (0,len(Working)): # start the search loop
+                        if word == Working[x]: # Look for a matching word
+                            Continue = False # End the while loop
+                            # Build the coded string for export
+                            export = str("{}|{}|\n").format (str(LineCount),str(x))
+                            print export # Print the encoded word for manual storage
+                            output.write(export) # Add the encoded word to the message file
+                            return # Stop the search and get another word.
+                        else:
+                            x = x+1 #Increment the word counter and check again 
+               return   # Exit if the end of file is reached, no encoded string will be printed
+                
+                       
+
+
+
+# Now lets open the files
+record=open(KeyFileName,"r") # Open the key file
+
+output=open(Message,"w") # Open the message file
+
+ans = True # Prime ans to keep the input loop running
+
+while ans: # This is the beginning of the input loop
+
+    # Get the message, one word at a time, to encode
+    print " Enter the message one word at a time, no punctuation."
+    word = raw_input("What is the word to encrypt? press enter to end  ")
+
+
+    try:                          # setup to handle entry errors
+                
+                if len(word) > 0 :      #test for a string
+                     Encode(word) # Call the Encode function and pass the string word
+                     
+                elif len(word) == 0 : # If the length of word is 0, you must be done
+                    print "Good Bye" # Be polite and say good by
+                    ans = False      # Set ans to False to end the input loop
+
+                else:                 # You shouldn't get to here but if you did...
+                        print "wrong answer" 
+
+    except ValueError:            # how to deal with a ValueError
+                        print "oops, try again!"    
+                 
+record.close() # Close the key file.
+output.close() # Close the secret message file.
+
+
+    
+
