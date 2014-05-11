@@ -58,14 +58,140 @@ Take in a number and return the factors as a list. If there is only one factor,"
 
 
 
+
+def Crypto():
+
+
+        KeyFileName = "c:\data\key.txt" #The name of the key file
+        Message = "c:\data\secretmessage.txt" # the name message file
+        Line = []
+
+
+        def Encode(word):  # Start the function definitiion
+               Continue = True # Prime the while loop
+               LineCount = 0 # Prime linr counter
+               export = "" # used to build the code for one word
+               Working = [] # Holds the line of the key to scan 
+            
+               while Continue: # Start the loop
+                  for line in record: # Get a line of the key file
+                    
+                       Working= line.split(" ") # Split it upinto a list
+                       LineCount = LineCount+1 # Increment LineCount
+                       for x in range (0,len(Working)): # start the search loop
+                           if word == Working[x]: # Look for a matching word
+                               Continue = False # End the while loop
+                               # Build the coded string for export
+                               export = str("{}|{}|\n").format (str(LineCount),str(x))
+                               print export # Print the encoded word for manual storage
+                               output.write(export) # Add the encoded word to the message file
+                               return # Stop the search and get another word.
+                           else:
+                               x = x+1 #Increment the word counter and check again 
+                  return   # Exit if the end of file is reached, no encoded string will be printed
+                
+                       
+
+
+
+        # Now lets open the files
+        record=open(KeyFileName,"r") # Open the key file
+
+        output=open(Message,"w") # Open the message file
+
+        ans = True # Prime ans to keep the input loop running
+
+        while ans: # This is the beginning of the input loop
+
+            # Get the message, one word at a time, to encode
+            print " Enter the message one word at a time, no punctuation."
+            word = raw_input("What is the word to encrypt? press enter to end  ")
+
+
+            try:                          # setup to handle entry errors
+                
+                   if len(word) > 0 :      #test for a string
+                        Encode(word) # Call the Encode function and pass the string word
+                     
+                   elif len(word) == 0 : # If the length of word is 0, you must be done
+                       print "Good Bye" # Be polite and say good by
+                       ans = False      # Set ans to False to end the input loop
+
+                   else:                 # You shouldn't get to here but if you did...
+                          print "wrong answer" 
+
+            except ValueError:            # how to deal with a ValueError
+                           print "oops, try again!"    
+                 
+        record.close() # Close the key file.
+        output.close() # Close the secret message file.
+
+
+def DeCrypto():
+                # First lets define some things
+
+        KeyFileName = "c:\data\key.txt" #The name of the key file
+        Message = "c:\data\secretmessage.txt" # the name message file
+
+
+
+        def decode(LineCnt,x):
+            Continue = True # Prime the while loop
+            Line = "" # Used to read in the key line
+            LineCount = 0 # Used to keep track of which line we are on
+            Working = [] # Used to split the Line for printing the word x
+            LineCnt = int(LineCnt) # Convert the string to an interget
+            x = int(x) # Convert the string to an interget
+            while Continue:  # Decoding loop
+                for line in key: # Read in a line of the key
+                    working = line.split(" ") # Split the key
+                    if (LineCnt-1) == LineCount: # Subtract one for old ways, and compare 
+                        print working[x] # Right line! Print the word from the key
+                        Continue = False  # End the loop
+                        return  # Return for the next code
+                    else:
+                        LineCount = LineCount + 1 # Not the right line, add one and do it again
+
+            return # If thing slip just go back
+
+
+
+        # Now lets open the files
+        record=open(Message,"r") # Open the message file
+        key=open(KeyFileName,"r") # Open the message file
+
+
+        ans = True # Prime ans to keep the input loop running
+        work = [] # Setup the list for spliting the code
+        code = "" # Setup the string for reading in the message
+        while ans: # This is the beginning of the input loop
+
+            # Get the message, one word at a time, to encode
+            print " Decrypting your message"
+            for code in record: #read in a line of the code
+                work = code.split("|") #Split it up 
+                decode(work[0],work[1]) # Call the decode function  and pass LineCnt,x
+            ans = False # Once done reading the message end the loop
+
+        record.close() # Close the message file.
+        key.close() # Close the key
+        waiting = raw_input("Press enter to close")
+
+
+
+
+
 # Below is the menu selection 
 
 ans = True #Prime ans for the while, menu entry, loop
 while ans :
         print """
-       what shall we do
-       1- factoring
+       What shall we do?
+       
+       1- Factoring
        2- Simple Loop
+       3- Encode a message
+       4- DeCode a message
        9- Quit
                 """
         roption = "4"
@@ -76,7 +202,10 @@ while ans :
                         Factoring()   #Call the defined function Factoring
                 elif option ==2:
                         SimpleLoop()
-
+                elif option == 3:
+                        Crypto()
+                elif option == 4:
+                        DeCrypto()
                 elif option == 9:     #test for nine
                         ans = False
 
