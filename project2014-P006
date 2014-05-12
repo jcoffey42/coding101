@@ -1,94 +1,191 @@
-Python 2.7.6 (default, Nov 10 2013, 19:24:24) [MSC v.1500 64 bit (AMD64)] on win32
-Type "copyright", "credits" or "license()" for more information.
->>> ================================ RESTART ================================
->>> 
+#project2014-P006.py
+#A collection of small programs with a menu.
+#A demonstration of functions and menuing
 
-       what shall we do
-       1- factoring
-       2- Simple Loop
-       3- Encode a message
-       9- Quit
+#First we setup the functions
+
+def SimpleLoop(): #define a function with the variable to pass on inside ()
+        """
+A simple loop to demonstrate counting
+This comment should be the function description 
+""" 
+# I am printing the small program as for reference
+        print "A simple loop to demonstrate counting"
+        print """
+        x= 10 # Set the value of x to 10
+        while x > 0: #this is the loop beginning. It will loop until x < 0
+                print x #Print x
+                x=x-1 #Decrement x by 1
+                """
+        x= 10  # Set the value of x to 10
+        while x > 0: #this is the loop beginning. It will loop until x < 0
+                print x #Print x
+                x=x-1 #Decrement x by 1
                 
-Please make a selection 3
+def Factoring():
+        """
+Take in a number and return the factors as a list. If there is only one factor,"1", then the number is a prime number
+"""
+        
+        fac=int(1) #The factor test number
+        Factors = [] # Create an empty list for the factors to be stored in
+        findex = int(0) # Prime the list index variable
+        # Ask for a number to factor and make it an integer
+        num = int(raw_input("Please give me a number: "))
+        print "The number you entered is: ", num
 
-Traceback (most recent call last):
-  File "C:\Users\jerry\Google Drive\coding 101\Python\project 2014-P006.py", line 155, in <module>
-    Crypto()
-NameError: name 'Crypto' is not defined
->>> ================================ RESTART ================================
->>> 
+        # Start the loop to find the factors
+        for x in range(1,num) : # Test for factors through the number itself
 
-       what shall we do
-       1- factoring
-       2- Simple Loop
-       3- Encode a message
-       9- Quit
+                if num%fac == 0: # Check for an even division
+                        print "A factor is: ", fac  # If the remainder is zero print the factor
+
+                        Factors[findex:] = [fac] # Place the factor into the list.
+                        # This was tough, you have to use [x:] to load the list
+                        # Specifying a range x to the end
+
+                        findex = findex + 1 # Add one to the index
+
+                        fac = fac + 1 # Add one to the factor test
+
+                else:
+                        fac = fac + 1 # Add one to the factor test and restart
+
+        else:
+                print " The list of factors is ", Factors
+                print "all done" # We are all done
+
+
+
+
+
+def Crypto():
+
+
+        KeyFileName = "c:\data\key.txt" #The name of the key file
+        Message = "c:\data\secretmessage.txt" # the name message file
+        Line = []
+
+
+        def Encode(word):  # Start the function definition
+               Continue = True # Prime the while loop
+               LineCount = 0 # Prime line counter
+               export = "" # used to build the code for one word
+               Working = [] # Holds the line of the key to scan 
+            
+               while Continue: # Start the loop
+                  for line in record: # Get a line of the key file
+                    
+                       Working= line.split(" ") # Split it up into a list
+                       LineCount = LineCount+1 # Increment LineCount
+                       for x in range (0,len(Working)): # start the search loop
+                           if word == Working[x]: # Look for a matching word
+                               Continue = False # End the while loop
+                               # Build the coded string for export
+                               export = str("{}|{}|\n").format (str(LineCount),str(x))
+                               print export # Print the encoded word for manual storage
+                               output.write(export) # Add the encoded word to the message file
+                               return # Stop the search and get another word.
+                           else:
+                               x = x+1 #Increment the word counter and check again 
+                  return   # Exit if the end of file is reached, no encoded string will be printed
                 
-Please make a selection 3
- Enter the message one word at a time, no punctuation.
-What is the word to encrypt? press enter to end  and
-3|12|
+                       
 
- Enter the message one word at a time, no punctuation.
-What is the word to encrypt? press enter to end  then
-263|2|
 
- Enter the message one word at a time, no punctuation.
-What is the word to encrypt? press enter to end  there
-73|13|
 
- Enter the message one word at a time, no punctuation.
-What is the word to encrypt? press enter to end  were
-49|8|
+        # Now lets open the files
+        record=open(KeyFileName,"r") # Open the key file
 
- Enter the message one word at a time, no punctuation.
-What is the word to encrypt? press enter to end  none
-635|14|
+        output=open(Message,"w") # Open the message file
 
- Enter the message one word at a time, no punctuation.
-What is the word to encrypt? press enter to end  
-Good Bye
+        ans = True # Prime ans to keep the input loop running
 
-       what shall we do
-       1- factoring
-       2- Simple Loop
-       3- Encode a message
-       9- Quit
+        while ans: # This is the beginning of the input loop
+
+            # Get the message, one word at a time, to encode
+            print " Enter the message one word at a time, no punctuation."
+            word = raw_input("What is the word to encrypt? press enter to end  ")
+
+
+            try:                          # setup to handle entry errors
                 
-Please make a selection 9
->>> ================================ RESTART ================================
->>> 
+                   if len(word) > 0 :      #test for a string
+                        Encode(word) # Call the Encode function and pass the string word
+                     
+                   elif len(word) == 0 : # If the length of word is 0, you must be done
+                       print "Good Bye" # Be polite and say good by
+                       ans = False      # Set ans to False to end the input loop
 
-       what shall we do
-       1- factoring
-       2- Simple Loop
-       3- Encode a message
-       4- DeCode a message
-       9- Quit
-                
-Please make a selection 4
- Decrypting your message
-and
-then
-there
-were
-none
-Press enter to close
->>> ================================ RESTART ================================
->>> 
+                   else:                 # You shouldn't get to here but if you did...
+                          print "wrong answer" 
 
-       What shall we do?
-       
-       1- factoring
-       2- Simple Loop
-       3- Encode a message
-       4- DeCode a message
-       9- Quit
-                
-Please make a selection 
->>> ================================ RESTART ================================
->>> 
+            except ValueError:            # how to deal with a ValueError
+                           print "oops, try again!"    
+                 
+        record.close() # Close the key file.
+        output.close() # Close the secret message file.
 
+
+def DeCrypto():
+                # First lets define some things
+
+        KeyFileName = "c:\data\key.txt" #The name of the key file
+        Message = "c:\data\secretmessage.txt" # the name message file
+
+
+
+        def decode(LineCnt,x):
+            Continue = True # Prime the while loop
+            Line = "" # Used to read in the key line
+            LineCount = 0 # Used to keep track of which line we are on
+            Working = [] # Used to split the Line for printing the word x
+            LineCnt = int(LineCnt) # Convert the string to an integer
+            x = int(x) # Convert the string to an integer
+            while Continue:  # Decoding loop
+                for line in key: # Read in a line of the key
+                    working = line.split(" ") # Split the key
+                    if (LineCnt-1) == LineCount: # Subtract one for old ways, and compare 
+                        print working[x] # Right line! Print the word from the key
+                        Continue = False  # End the loop
+                        return  # Return for the next code
+                    else:
+                        LineCount = LineCount + 1 # Not the right line, add one and do it again
+
+            return # If thing slip just go back
+
+
+
+        # Now lets open the files
+        record=open(Message,"r") # Open the message file
+        key=open(KeyFileName,"r") # Open the message file
+
+
+        ans = True # Prime ans to keep the input loop running
+        work = [] # Setup the list for splitting the code
+        code = "" # Setup the string for reading in the message
+        while ans: # This is the beginning of the input loop
+
+            # Get the message, one word at a time, to encode
+            print " Decrypting your message"
+            for code in record: #read in a line of the code
+                work = code.split("|") #Split it up 
+                decode(work[0],work[1]) # Call the decode function  and pass LineCnt,x
+            ans = False # Once done reading the message end the loop
+
+        record.close() # Close the message file.
+        key.close() # Close the key
+        waiting = raw_input("Press enter to close")
+
+
+
+
+
+# Below is the menu selection 
+
+ans = True #Prime ans for the while, menu entry, loop
+while ans :
+        print """
        What shall we do?
        
        1- Factoring
@@ -96,52 +193,24 @@ Please make a selection
        3- Encode a message
        4- DeCode a message
        9- Quit
-                
-Please make a selection 1
-Please give me a number: 67
-The number you entered is:  67
-A factor is:  1
- The list of factors is  [1]
-all done
+                """
+        roption = "4"
+        roption = raw_input("Please make a selection ",)    # make a choice
+        try:                          # setup to handle enter without entry
+                option = int(roption) # make sure menu entry is number
+                if option == 1:       #test for one
+                        Factoring()   #Call the defined function Factoring
+                elif option ==2:
+                        SimpleLoop()
+                elif option == 3:
+                        Crypto()
+                elif option == 4:
+                        DeCrypto()
+                elif option == 9:     #test for nine
+                        ans = False
 
-       What shall we do?
-       
-       1- Factoring
-       2- Simple Loop
-       3- Encode a message
-       4- DeCode a message
-       9- Quit
-                
-Please make a selection 1
-Please give me a number: 
-	
-oops, try again!
-
-       What shall we do?
-       
-       1- Factoring
-       2- Simple Loop
-       3- Encode a message
-       4- DeCode a message
-       9- Quit
-                
-Please make a selection 1
-Please give me a number: 50
-The number you entered is:  50
-A factor is:  1
-A factor is:  2
-A factor is:  5
-A factor is:  10
-A factor is:  25
- The list of factors is  [1, 2, 5, 10, 25]
-all done
-
-       What shall we do?
-       
-       1- Factoring
-       2- Simple Loop
-       3- Encode a message
-       4- DeCode a message
-       9- Quit
-                
-Please make a selection 
+                else:                 # what to do if not tested
+                        print "wrong answer" 
+        except ValueError:            # how to deal with no entry at all
+                        print "oops, try again!"    
+        
