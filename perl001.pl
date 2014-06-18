@@ -13,12 +13,7 @@
 #This list is the multipliers for the resistor
 @Mult = (1,10,100,1000,10000,100000,1000000,10000000,100000000,100000000,1000000000);
 
-$value = 0;
-$multiplier = 0;
-$final = 0;
-$co1 = 0;
-$co2 = 0;
-$co3 = 0;
+
 #print the basic information
 
 print "Lets see what that resistor value is\
